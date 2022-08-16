@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+	<v-app>
+		<nav-bar></nav-bar>
+
+		<v-main>
+			<!-- <transition
+				mode="out-in"
+				enter-active-class="animate__animated animate__bounce"
+				leave-active-class="animate__animated animate__bounceOutRight"
+			>
+				
+			</transition> -->
+			<router-view />
+		</v-main>
+	</v-app>
 </template>
 
+<script>
+	import NavBar from '@/components/NavBar.vue';
+	export default {
+		name: 'App',
+
+		data: () => ({}),
+		components: {
+			'nav-bar': NavBar,
+		},
+	};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+	/* .router-anim-enter-active {
+		animation: coming 1s;
+		animation-delay: 0.5s;
+		
+		opacity: 0;
+	} */
+	/* .router-anim-leave-active {
+		animation: going 1s;
+	} */
+	/* @keyframes coming {
+		from {
+			transform: translateX(-50px);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0px);
+			opacity: 1;
+		}
+	} */
+	/* @keyframes going {
+		0% {
+			transform: translateX(0px);
+		}
+		100% {
+			transform: translateX(-50px);
+			opacity: 0;
+		}
+	} */
 </style>

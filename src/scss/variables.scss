@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Lora:wght@400;500;700&family=Montserrat:wght@100;300;400;500;700;900&display=swap');
+@import '~vuetify/src/styles/settings/_variables.scss';
+
+$main-font: 'Montserrat', sans-serif;
+
+$body-font-family: $main-font;
+$heading-font-family: $main-font;
+
+$headings: 
+  (
+    'h1': (
+      'size': 6rem,
+      'weight': 300,
+      'line-height': 6rem,
+      'letter-spacing': -.015625em,
+      'font-family': $main-font,
+      'text-transform': uppercase,
+    ),
+    'h2': (
+      'size': 3.75rem,
+      'weight': 300,
+      'line-height': 3.75rem,
+      'letter-spacing': -.0083333333em,
+      'font-family': $main-font,
+      'text-transform': uppercase,
+    ),
+    'h3': (
+      'size': 3rem,
+      'weight': 400,
+      'line-height': 3.125rem,
+      'letter-spacing': normal,
+      'font-family': $main-font,
+      'text-transform': uppercase,
+    ),
+    'h4': (
+      'size': 2.125rem,
+      'weight': 400,
+      'line-height': 2.5rem,
+      'letter-spacing': .0073529412em,
+      'font-family': $main-font,
+      'text-transform': uppercase,
+    ),
+    'h5': (
+      'size': 1.5rem,
+      'weight': 400,
+      'line-height': 2rem,
+      'letter-spacing': normal,
+      'font-family': $main-font,
+      'text-transform': uppercase,
+    ),
+    'h6': (
+      'size': 1.25rem,
+      'weight': 500,
+      'line-height': 2rem,
+      'letter-spacing': .0125em,
+      'font-family': $main-font,
+      'text-transform': uppercase,
+    ),
+    'subtitle-1': (
+      'size': 1rem,
+      'weight': normal,
+      'line-height': 1.75rem,
+      'letter-spacing': .009375em,
+      'font-family': $main-font,
+      'text-transform': false
+    ),
+    'subtitle-2': (
+      'size': .875rem,
+      'weight': 500,
+      'line-height': 1.375rem,
+      'letter-spacing': .0071428571em,
+      'font-family': $main-font,
+      'text-transform': false
+    ),
+    'body-1': (
+      'size': 1rem,
+      'weight': 400,
+      'line-height': 1.5rem,
+      'letter-spacing': .03125em,
+      'font-family': $main-font,
+      'text-transform': false
+    ),
+    'body-2': (
+      'size': .875rem,
+      'weight': 400,
+      'line-height': 1.25rem,
+      'letter-spacing': .0178571429em,
+      'font-family': $main-font,
+      'text-transform': false
+    ),
+    'button': (
+      'size': .875rem,
+      'weight': 500,
+      'line-height': 2.25rem,
+      'letter-spacing': .0892857143em,
+      'font-family': $main-font,
+      'text-transform': uppercase
+    ),
+    'caption': (
+      'size': .75rem,
+      'weight': 400,
+      'line-height': 1.25rem,
+      'letter-spacing': .0333333333em,
+      'font-family': $main-font,
+      'text-transform': false
+    ),
+    'overline': (
+      'size': .75rem,
+      'weight': 500,
+      'line-height': 2rem,
+      'letter-spacing': .1666666667em,
+      'font-family': $main-font,
+      'text-transform': uppercase
+    )
+);
