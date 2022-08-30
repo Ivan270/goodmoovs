@@ -8,7 +8,6 @@
 				enter-active-class="animate__animated animate__bounce"
 				leave-active-class="animate__animated animate__bounceOutRight"
 			>
-				
 			</transition> -->
 			<router-view />
 		</v-main>
@@ -30,13 +29,13 @@
 	/* .router-anim-enter-active {
 		animation: coming 1s;
 		animation-delay: 0.5s;
-		
+
 		opacity: 0;
-	} */
-	/* .router-anim-leave-active {
+	}
+	.router-anim-leave-active {
 		animation: going 1s;
-	} */
-	/* @keyframes coming {
+	}
+	@keyframes coming {
 		from {
 			transform: translateX(-50px);
 			opacity: 0;
@@ -45,8 +44,8 @@
 			transform: translateX(0px);
 			opacity: 1;
 		}
-	} */
-	/* @keyframes going {
+	}
+	@keyframes going {
 		0% {
 			transform: translateX(0px);
 		}

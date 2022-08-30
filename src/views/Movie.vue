@@ -1,7 +1,7 @@
 <template>
 	<v-container fluid class="deep-purple accent-4">
 		<v-row justify="center">
-			<v-col cols="12" lg="10" class="order-2 order-lg-1 deep-orange">
+			<v-col cols="12" lg="10" class="order-2 order-lg-1 deep-orange pt-8 ps-8">
 				<v-row class="red" no-gutters>
 					<v-col
 						cols="12"
@@ -10,7 +10,6 @@
 					>
 						<v-card class="mb-1">
 							<v-img
-								max-height="700"
 								max-width="350"
 								contain
 								:src="`https://image.tmdb.org/t/p/original/${movie.poster_path}?controls=0`"
