@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	state: {
 		inTheaters: [],
 		bestMovies: [],
+		comingSoon: [],
 	},
 	getters: {},
 	mutations: {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
 		},
 		SET_BESTMOVIES(state, movies) {
 			state.bestMovies = movies;
+		},
+		SET_COMINGSOON(state, movies) {
+			state.comingSoon = movies;
 		},
 	},
 	actions: {
@@ -41,6 +45,19 @@ export default new Vuex.Store({
 
 				let bestMovies = await response.json();
 				this.commit('SET_BESTMOVIES', bestMovies.results);
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async fetchComingSoon() {
+			try {
+				let response = await fetch(
+					'https://api.themoviedb.org/3/movie/upcoming?api_key=78854d693c531f7fffbfc383ef0ea4e4&language=en-US&page=1'
+				);
+				if (!response.ok) throw 'Something went wrong with the API';
+
+				let upcomingMovies = await response.json();
+				this.commit('SET_COMINGSOON', upcomingMovies.results);
 			} catch (error) {
 				console.log(error);
 			}

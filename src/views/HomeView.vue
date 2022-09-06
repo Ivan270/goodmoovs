@@ -3,7 +3,7 @@
 		<v-row>
 			<v-col
 				cols="12"
-				md="6"
+				md="4"
 				class="d-flex justify-center"
 				v-for="option in homeOptions"
 				:key="option.title"
@@ -53,7 +53,7 @@
 					{
 						title: 'Best Movies',
 						subtitle: 'Check the ranking',
-						source: 'oscar.jpg',
+						source: 'oscar-wide.jpg',
 						route: '/bestmovies',
 					},
 					{
@@ -61,6 +61,12 @@
 						subtitle: "What's new?",
 						source: 'popcorn.jpg',
 						route: '/intheaters',
+					},
+					{
+						title: 'Coming Soon',
+						subtitle: "What's next?",
+						source: 'recording-gear.jpg',
+						route: '/comingsoon',
 					},
 				],
 			};

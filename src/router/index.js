@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue';
 import InTheaters from '@/views/InTheaters.vue';
 import Movie from '@/views/Movie.vue';
 import BestMovies from '@/views/BestMovies.vue';
+import ComingSoon from '@/views/ComingSoon.vue';
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,10 @@ const routes = [
 	{
 		path: '/bestmovies',
 		component: BestMovies,
+	},
+	{
+		path: '/comingsoon',
+		component: ComingSoon,
 	},
 	{
 		path: '/movies/:id',

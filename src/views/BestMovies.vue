@@ -16,7 +16,7 @@
 	import MoviesDisplay from '@/components/MoviesDisplay.vue';
 
 	export default {
-		name: 'best-movies-comp',
+		name: 'best-movies-view',
 		// props: {},
 		data: function () {
 			return {};
