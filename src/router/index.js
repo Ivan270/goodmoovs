@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import InTheaters from '@/views/InTheaters.vue';
 import Movie from '@/views/Movie.vue';
+import BestMovies from '@/views/BestMovies.vue';
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,10 @@ const routes = [
 	{
 		path: '/intheaters',
 		component: InTheaters,
+	},
+	{
+		path: '/bestmovies',
+		component: BestMovies,
 	},
 	{
 		path: '/movies/:id',

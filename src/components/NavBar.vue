@@ -11,8 +11,12 @@
 		>
 			<v-container fluid fill-height>
 				<v-row justify="center" align="center">
-					<v-icon large class="mr-3">mdi-movie-open</v-icon>
-					<v-toolbar-title class="">GoodMoovs</v-toolbar-title>
+					<v-btn icon plain large class="mr-3" to="/"
+						><v-icon> mdi-movie-open</v-icon></v-btn
+					>
+					<v-toolbar-title class=""
+						><v-btn text class="text-h1" plain to="/">GoodMoovs</v-btn>
+					</v-toolbar-title>
 				</v-row>
 			</v-container>
 			<v-spacer></v-spacer>
