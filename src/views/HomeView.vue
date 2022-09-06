@@ -20,7 +20,7 @@
 						:to="option.route"
 					>
 						<v-card-title
-							><h1 class="text-h2 font-weight-black">
+							><h1 class="text-h4 text-xl-h2 font-weight-black">
 								{{ option.title }}
 							</h1></v-card-title
 						>

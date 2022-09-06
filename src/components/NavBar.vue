@@ -31,6 +31,7 @@
 			temporary
 			dark
 			v-model="drawer"
+			color="deep-orange"
 		>
 			<template v-slot:prepend>
 				<v-list-item two-line dense>
@@ -80,9 +81,19 @@
 						path: '/',
 					},
 					{
+						icon: 'mdi-seal-variant',
+						title: 'Best Movies',
+						path: '/bestmovies',
+					},
+					{
 						icon: 'mdi-theater',
 						title: 'In theaters',
 						path: '/intheaters',
+					},
+					{
+						icon: 'mdi-movie-edit-outline',
+						title: 'Coming Soon',
+						path: '/comingsoon',
 					},
 				],
 				drawer: false,
