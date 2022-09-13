@@ -15,7 +15,7 @@
 						><v-icon> mdi-movie-open</v-icon></v-btn
 					>
 					<v-toolbar-title class=""
-						><v-btn text class="text-h1" plain to="/">GoodMoovs</v-btn>
+						><v-btn text class="text-h4" plain to="/">GoodMoovs</v-btn>
 					</v-toolbar-title>
 				</v-row>
 			</v-container>

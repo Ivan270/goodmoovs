@@ -2,12 +2,20 @@
 	<v-container fluid class="deep-purple accent-4">
 		<v-row justify="center">
 			<v-col cols="12" lg="10" class="order-2 order-lg-1 deep-orange pt-8 ps-8">
-				<v-row class="red" no-gutters>
-					<v-col
-						cols="12"
-						md="3"
-						class="deep-orange d-flex justify-center align-center"
+				<v-row justify="center" justify-md="start" class="ma-1 mx-2" no-gutters>
+					<v-btn
+						width="100"
+						dark
+						large
+						depressed
+						color="deep-purple accent-4"
+						@click="$router.go(-1)"
+						>Go back</v-btn
 					>
+				</v-row>
+
+				<v-row no-gutters>
+					<v-col cols="12" md="3" class="deep-orange d-flex justify-center">
 						<v-card class="mb-1">
 							<v-img
 								max-width="350"
@@ -18,11 +26,7 @@
 						</v-card>
 					</v-col>
 
-					<v-col
-						cols="12"
-						md="9"
-						class="deep-orange d-flex justify-center align-center"
-					>
+					<v-col cols="12" md="9" class="deep-orange d-flex justify-center">
 						<v-card class="d-flex align-stretch mt-1">
 							<iframe
 								width="933"
@@ -55,7 +59,7 @@
 						>
 					</v-col>
 					<v-col cols="12" md="11" class="pe-lg-1">
-						<v-card color="">
+						<v-card>
 							<v-card-text>{{ movie.overview }}</v-card-text>
 						</v-card>
 					</v-col>

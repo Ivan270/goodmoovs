@@ -5,6 +5,7 @@ import InTheaters from '@/views/InTheaters.vue';
 import Movie from '@/views/Movie.vue';
 import BestMovies from '@/views/BestMovies.vue';
 import ComingSoon from '@/views/ComingSoon.vue';
+import Person from '@/views/Person.vue';
 
 Vue.use(VueRouter);
 
@@ -38,6 +39,11 @@ const routes = [
 	{
 		path: '/movies/:id',
 		component: Movie,
+		props: true,
+	},
+	{
+		path: '/people/:id',
+		component: Person,
 		props: true,
 	},
 ];
