@@ -72,8 +72,8 @@
 			</v-col>
 
 			<v-row class="order-3 deep-purple accent-4">
-				<v-col cols="12" md="3" class="d-flex justify-center align-center">
-					<v-card class="pa-1" width="350">
+				<v-col cols="12" md="3" class="d-flex justify-center align-top">
+					<v-card class="pa-1" width="350" min-height="400" max-height="500">
 						<v-card-title>Personal Info</v-card-title>
 						<v-divider class="mx-4"></v-divider>
 						<v-card-subtitle class="subtitle-1 font-weight-bold mb-0 pb-0"
@@ -90,12 +90,12 @@
 							>Birthday</v-card-subtitle
 						>
 						<v-card-text>{{ person.birthday }}</v-card-text>
+						<v-divider v-if="person.deathday != null" class="mx-4"></v-divider>
 						<v-card-subtitle
 							v-if="person.deathday != null"
 							class="subtitle-1 font-weight-bold mb-0 pb-0"
 							>Deathday</v-card-subtitle
 						>
-						<v-divider v-if="person.deathday != null" class="mx-4"></v-divider>
 						<v-card-text v-if="person.deathday != null">{{
 							person.deathday
 						}}</v-card-text>
@@ -106,26 +106,49 @@
 						<v-card-text>{{ person.place_of_birth }}</v-card-text>
 					</v-card>
 				</v-col>
-				<v-col cols="12" md="7">
-					<v-card class="pa-1"></v-card>
+				<v-col cols="12" md="7" align-self="start">
+					<v-card dark width="100%">
+						<!-- Crear componente que muestre lista de peliculas donde trabajó -->
+						<Credits
+							v-if="this.creditsCastTv.length > 0"
+							:items="this.creditsCastTv"
+							:title="'TV Acting'"
+						/>
+						<Credits
+							v-if="this.creditsCastMv.length > 0"
+							:items="this.creditsCastMv"
+							:title="'Movie Acting'"
+						/>
+						<Credits
+							v-if="this.creditsProdTv.length > 0"
+							:items="this.creditsProdTv"
+							:title="'TV Crew'"
+						/>
+						<Credits
+							v-if="this.creditsProdMv.length > 0"
+							:items="this.creditsProdMv"
+							:title="'Movie Crew'"
+						/>
+					</v-card>
 				</v-col>
 			</v-row>
 		</v-row>
-		<v-row justify="center"></v-row>
 	</v-container>
 </template>
 
 <script>
+	import Credits from '@/components/Credits.vue';
+
 	export default {
 		name: 'person-view',
 		props: ['id'],
 		data: function () {
 			return {
 				person: {},
-				// creditsCastTv: [],
-				// creditsCastMv: [],
-				// creditsProdTv: [],
-				// creditsProdMv: [],
+				creditsCastTv: [],
+				creditsCastMv: [],
+				creditsProdTv: [],
+				creditsProdMv: [],
 			};
 		},
 		// computed: {},
@@ -150,13 +173,21 @@
 					if (!response.ok) throw 'Error finding credits';
 					let data = await response.json();
 					let tvCreds = data.cast.filter((c) => c.media_type === 'tv');
-					this.person.creditsCastTv = tvCreds;
+					if (tvCreds.length > 0) {
+						this.creditsCastTv = tvCreds;
+					}
 					let movCreds = data.cast.filter((c) => c.media_type === 'movie');
-					this.person.creditsCastMv = movCreds;
+					if (movCreds.length > 0) {
+						this.creditsCastMv = movCreds;
+					}
 					let prodCredsTv = data.crew.filter((c) => c.media_type === 'tv');
-					this.person.creditsProdTv = prodCredsTv;
+					if (prodCredsTv.length > 0) {
+						this.creditsProdTv = prodCredsTv;
+					}
 					let prodCredsMov = data.crew.filter((c) => c.media_type === 'movie');
-					this.person.creditsProdMv = prodCredsMov;
+					if (prodCredsMov.length > 0) {
+						this.creditsProdMv = prodCredsMov;
+					}
 				} catch (error) {
 					console.log(error);
 				}
@@ -172,7 +203,9 @@
 			},
 		},
 		// watch: {},
-		// components: {},
+		components: {
+			Credits,
+		},
 		// mixins: [],
 		// filters: {},
 		// -- Lifecycle Methods
