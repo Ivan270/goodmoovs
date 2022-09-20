@@ -10,7 +10,16 @@
 				:key="movie.id"
 				class="d-flex justify-center"
 			>
-				<v-hover v-slot="{ hover }">
+				<v-sheet v-if="isLoading" color="deep-purple accent-1" class="pa-3">
+					<v-skeleton-loader
+						transition-group="scale-transition"
+						class="pa-2 d-flex flex-column justify-space-around"
+						width="300"
+						height="520"
+						type="image, heading"
+					></v-skeleton-loader>
+				</v-sheet>
+				<v-hover v-else v-slot="{ hover }">
 					<v-card
 						min-height="520px"
 						min-width="300"
@@ -84,6 +93,7 @@
 					offset: 0,
 					easing: 'easeInOutCubic',
 				},
+				isLoading: false,
 			};
 		},
 		computed: {
@@ -104,6 +114,12 @@
 		// mixins: [],
 		// filters: {},
 		// -- Lifecycle Methods
+		mounted() {
+			this.isLoading = true;
+			setTimeout(() => {
+				this.isLoading = false;
+			}, 1000);
+		},
 		// -- End Lifecycle Methods
 	};
 </script>

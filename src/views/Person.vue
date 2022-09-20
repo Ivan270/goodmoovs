@@ -6,13 +6,22 @@
 				lg="10"
 				class="order-2 order-lg-1 deep-orange pt-8 pb-8 ps-8"
 			>
-				<v-row class="" no-gutters>
+				<v-row no-gutters class="mx-6">
 					<v-col
 						cols="12"
 						md="3"
 						class="deep-orange d-flex justify-center align-center"
 					>
-						<v-card class="mb-1">
+						<v-sheet v-if="isLoading" color="deep-purple accent-1" class="pa-3">
+							<v-skeleton-loader
+								transition-group="scale-transition"
+								class="pa-2 d-flex flex-column justify-space-around"
+								width="350"
+								height="525"
+								type="image"
+							></v-skeleton-loader>
+						</v-sheet>
+						<v-card v-else class="mb-1">
 							<v-img
 								max-width="350"
 								contain
@@ -32,10 +41,10 @@
 							justify="center"
 							justify-md="space-between"
 							align="center"
-							class="mb-6"
+							class="ma-6"
 							no-gutters
 						>
-							<v-col cols="12" md="6" class="order-2 order-md-1">
+							<v-col cols="12" md="6" class="order-2 order-md-1 mb-2">
 								<h4 v-if="person.biography != ''" class="text-h4">Biography</h4>
 							</v-col>
 							<v-col
@@ -52,12 +61,10 @@
 									>Go back</v-btn
 								>
 							</v-col>
+							<p class="text-justify order-3 mt-6">
+								{{ person.biography }}
+							</p>
 						</v-row>
-
-						<p class="text-justify">
-							{{ person.biography }}
-						</p>
-						<!-- </v-col> -->
 					</v-col>
 				</v-row>
 			</v-col>
@@ -71,9 +78,21 @@
 				</h1>
 			</v-col>
 
-			<v-row class="order-3 deep-purple accent-4">
-				<v-col cols="12" md="3" class="d-flex justify-center align-top">
-					<v-card class="pa-1" width="350" min-height="400" max-height="500">
+			<v-row
+				class="order-3 deep-purple accent-4 justify-center mt-8"
+				no-gutters
+			>
+				<v-col
+					cols="12"
+					lg="3"
+					class="d-flex justify-center align-top order-2 order-lg-1 px-2 px-xl-0"
+				>
+					<v-card
+						class="pa-1 mb-8"
+						width="350"
+						min-height="400"
+						max-height="500"
+					>
 						<v-card-title>Personal Info</v-card-title>
 						<v-divider class="mx-4"></v-divider>
 						<v-card-subtitle class="subtitle-1 font-weight-bold mb-0 pb-0"
@@ -106,30 +125,31 @@
 						<v-card-text>{{ person.place_of_birth }}</v-card-text>
 					</v-card>
 				</v-col>
-				<v-col cols="12" md="7" align-self="start">
-					<v-card dark width="100%">
-						<!-- Crear componente que muestre lista de peliculas donde trabajó -->
+				<v-col
+					cols="12"
+					lg="7"
+					align-self="start"
+					class="order-3 order-lg-2 px-2 px-xl-0 mb-2"
+				>
+					<v-card min-width="300px" max-width="100vw">
 						<Credits
-							v-if="this.creditsCastTv.length > 0"
-							:items="this.creditsCastTv"
-							:title="'TV Acting'"
+							v-if="this.creditsCast.length > 0"
+							:items="this.creditsCast"
+							:title="'Acting'"
 						/>
+						<v-divider class="mx-13"></v-divider>
 						<Credits
-							v-if="this.creditsCastMv.length > 0"
-							:items="this.creditsCastMv"
-							:title="'Movie Acting'"
-						/>
-						<Credits
-							v-if="this.creditsProdTv.length > 0"
-							:items="this.creditsProdTv"
-							:title="'TV Crew'"
-						/>
-						<Credits
-							v-if="this.creditsProdMv.length > 0"
-							:items="this.creditsProdMv"
-							:title="'Movie Crew'"
+							v-if="this.creditsProd.length > 0"
+							:items="this.creditsProd"
+							:title="'Crew'"
 						/>
 					</v-card>
+				</v-col>
+				<v-col
+					cols="12"
+					lg="2"
+					class="order-1 order-lg-3 d-flex flex-column mt-5 align-stretch justify-center"
+				>
 				</v-col>
 			</v-row>
 		</v-row>
@@ -145,10 +165,9 @@
 		data: function () {
 			return {
 				person: {},
-				creditsCastTv: [],
-				creditsCastMv: [],
-				creditsProdTv: [],
-				creditsProdMv: [],
+				creditsCast: [],
+				creditsProd: [],
+				isLoading: false,
 			};
 		},
 		// computed: {},
@@ -168,25 +187,17 @@
 			async fetchCredits() {
 				try {
 					let response = await fetch(
-						`https://api.themoviedb.org/3/person/${this.id}/combined_credits?api_key=78854d693c531f7fffbfc383ef0ea4e4&language=en-US`
+						`https://api.themoviedb.org/3/person/${this.id}/movie_credits?api_key=78854d693c531f7fffbfc383ef0ea4e4&language=en-US`
 					);
 					if (!response.ok) throw 'Error finding credits';
 					let data = await response.json();
-					let tvCreds = data.cast.filter((c) => c.media_type === 'tv');
-					if (tvCreds.length > 0) {
-						this.creditsCastTv = tvCreds;
+					let creds = data.cast;
+					if (creds.length > 0) {
+						this.creditsCast = creds;
 					}
-					let movCreds = data.cast.filter((c) => c.media_type === 'movie');
-					if (movCreds.length > 0) {
-						this.creditsCastMv = movCreds;
-					}
-					let prodCredsTv = data.crew.filter((c) => c.media_type === 'tv');
-					if (prodCredsTv.length > 0) {
-						this.creditsProdTv = prodCredsTv;
-					}
-					let prodCredsMov = data.crew.filter((c) => c.media_type === 'movie');
-					if (prodCredsMov.length > 0) {
-						this.creditsProdMv = prodCredsMov;
+					let prodCreds = data.crew;
+					if (prodCreds.length > 0) {
+						this.creditsProd = prodCreds;
 					}
 				} catch (error) {
 					console.log(error);
@@ -212,6 +223,12 @@
 		created() {
 			this.fetchPerson();
 			this.fetchCredits();
+		},
+		mounted() {
+			this.isLoading = true;
+			setTimeout(() => {
+				this.isLoading = false;
+			}, 1000);
 		},
 		// -- End Lifecycle Methods
 	};

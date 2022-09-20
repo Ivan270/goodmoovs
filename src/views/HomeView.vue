@@ -9,7 +9,21 @@
 				v-for="option in homeOptions"
 				:key="option.title"
 			>
-				<v-hover v-slot="{ hover }">
+				<v-sheet
+					v-if="isLoading"
+					color="deep-purple accent-1"
+					height="56vh"
+					class="pa-3"
+				>
+					<v-skeleton-loader
+						transition-group="scale-transition"
+						class="pa-2 d-flex flex-column justify-space-around"
+						width="600px"
+						height="50vh"
+						type="heading, heading, image"
+					></v-skeleton-loader>
+				</v-sheet>
+				<v-hover v-slot="{ hover }" v-else>
 					<v-card
 						:elevation="hover ? 20 : 0"
 						rounded="lg"
@@ -25,9 +39,11 @@
 								{{ option.title }}
 							</h1></v-card-title
 						>
+
 						<v-card-subtitle>
 							<h3>{{ option.subtitle }}</h3>
 						</v-card-subtitle>
+
 						<v-card-actions>
 							<v-img
 								height="300px"
@@ -70,6 +86,11 @@
 						route: '/comingsoon',
 					},
 				],
+				isLoading: false,
+				attrs: {
+					boilerplate: true,
+					elevation: 2,
+				},
 			};
 		},
 		computed: {
@@ -81,7 +102,13 @@
 
 		components: {},
 		created() {
+			this.isLoading = true;
 			this.fetchInTheaters();
+		},
+		mounted() {
+			setTimeout(() => {
+				this.isLoading = false;
+			}, 1000);
 		},
 	};
 </script>

@@ -16,7 +16,16 @@
 
 				<v-row no-gutters>
 					<v-col cols="12" md="3" class="deep-orange d-flex justify-center">
-						<v-card class="mb-1">
+						<v-sheet v-if="isLoading" color="deep-purple accent-1" class="pa-3">
+							<v-skeleton-loader
+								transition-group="scale-transition"
+								class="pa-2 d-flex flex-column justify-space-around"
+								width="350px"
+								height="525"
+								type="image"
+							></v-skeleton-loader>
+						</v-sheet>
+						<v-card v-else class="mb-1">
 							<v-img
 								max-width="350"
 								contain
@@ -27,7 +36,16 @@
 					</v-col>
 
 					<v-col cols="12" md="9" class="deep-orange d-flex justify-center">
-						<v-card class="d-flex align-stretch mt-1">
+						<v-sheet v-if="isLoading" color="deep-purple accent-1" class="pa-3">
+							<v-skeleton-loader
+								transition-group="scale-transition"
+								class="pa-2 d-flex flex-column justify-space-around"
+								width="933"
+								height="525"
+								type="image"
+							></v-skeleton-loader>
+						</v-sheet>
+						<v-card v-else class="d-flex align-stretch mt-1">
 							<iframe
 								width="933"
 								height="525"
@@ -104,6 +122,7 @@
 				directors: [],
 				music: [],
 				stars: [],
+				isLoading: false,
 			};
 		},
 		// computed: {},
@@ -190,6 +209,12 @@
 			this.fetchMovie();
 			this.fetchTrailer();
 			this.fetchCast();
+		},
+		mounted() {
+			this.isLoading = true;
+			setTimeout(() => {
+				this.isLoading = false;
+			}, 1000);
 		},
 		// -- End Lifecycle Methods
 	};

@@ -1,10 +1,12 @@
 <template>
 	<v-container>
 		<v-card-actions>
-			<v-btn text @click="show = !show">
-				{{ title }}
-				<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-			</v-btn>
+			<v-card-title
+				><v-btn text @click="show = !show" class="text-h6">
+					{{ title }}
+					<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+				</v-btn></v-card-title
+			>
 		</v-card-actions>
 		<v-expand-transition>
 			<div v-show="show">
@@ -34,11 +36,7 @@
 		// computed: {},
 		methods: {
 			redirectTo(id) {
-				if (this.title === 'Movie Crew' || this.title === 'Movie Acting') {
-					this.$router.push(`/movies/${id}`);
-				} else {
-					return;
-				}
+				this.$router.push(`/movies/${id}`);
 			},
 		},
 		// watch: {},
@@ -50,4 +48,8 @@
 	};
 </script>
 
-<style scoped></style>
+<style scoped>
+	.text-h6 {
+		text-transform: capitalize !important;
+	}
+</style>
